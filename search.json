@@ -19,5 +19,19 @@
     "title": "Test1page",
     "section": "return home",
     "text": "return home"
+  },
+  {
+    "objectID": "sub1.html",
+    "href": "sub1.html",
+    "title": "Test1page",
+    "section": "",
+    "text": "“return”"
+  },
+  {
+    "objectID": "sub1.html#return",
+    "href": "sub1.html#return",
+    "title": "Test1page",
+    "section": "#return",
+    "text": "#return"
   }
 ]
