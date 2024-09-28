@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davaquarto - assigment1</title>
+<title>Davaquarto - Pitfalls of Big Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./assigment1.html" aria-current="page"> 
+    <a class="nav-link" href="./assigment1.html"> 
 <span class="menu-text">Assigment1</span></a>
   </li>  
   <li class="nav-item">
@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tufte Future of Data Analysis</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./note2.html"> 
+    <a class="nav-link active" href="./note2.html" aria-current="page"> 
 <span class="menu-text">Pitfalls of Big Data</span></a>
   </li>  
 </ul>
@@ -123,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assigment1</h1>
+<h1 class="title">Pitfalls of Big Data</h1>
 </div>
 
 
@@ -140,38 +140,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="atomic peach tree.png" class="img-fluid figure-img"></p>
-<figcaption>Atomic Orange Tree</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="housepic.png" class="img-fluid figure-img"></p>
-<figcaption>House Proceduraly Generated. Source:TheRookies.co</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="spelunkygen.png" class="img-fluid figure-img"></p>
-<figcaption>Spelunky map Generation. Source TinySubversions.com</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="minecraft-ss.png" class="img-fluid figure-img"></p>
-<figcaption>Minecraft map Generation. Source: https://ucmgamestudies2017.wordpress.com</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Satisfaction score Cars.png" class="img-fluid figure-img"></p>
-<figcaption>Chart Critique: Cars Satisfaction Score. Source: Consumer Reports</figcaption>
-</figure>
-</div>
-<p>The chart is basically a table with a colorful line for the satisfaction score. Bold letters make it clear which category is each column, and the bold number in the rank column shows the rank of each car make. All of the car brands are underlined, which does not add much to the design. The colors on the Satisfaction score clearly depict which car brand has higher consumer satisfaction with a stoplight color pallet. Then even more detail is added with the percentage of owners who would buy the same brand again. There is a problem when there are ties as it is unclear of why one brand would be preferred over the other. The rank should stay constant in those cases and skip the ranks for the next one. Otherwise, the rank column does not give much information.</p>
-<p><a href="./index.html">return</a></p>
+<p>Big data analytics offer immense opportunities, but they are accompanied by significant challenges that can lead to errors if not properly managed. A notable example of this is the Google Flu Trends (GFT), which inaccurately predicted flu trends due to several key pitfalls. One major challenge in big data analytics is the assumption that sheer volume of data can replace traditional, well-validated methods. GFT’s approach to predicting flu trends relied heavily on large amounts of search data, underestimating the importance of scientific rigor in data measurement and validity. This overconfidence in big data led to the oversight of critical issues like construct validity and reliability, resulting in inaccurate predictions.</p>
+<p>In addition to this overconfidence, changes in Google’s search algorithms contributed to the inaccuracies. Google regularly updates its search algorithm for commercial optimization, and these adjustments, while beneficial for user experience, altered the underlying data GFT depended on. As user behavior and search algorithms shifted, GFT’s flu predictions became less reliable. The GFT parable emphasizes the need to account for such dynamic changes in data sources, as failing to understand these shifts can lead to significant errors.</p>
+<p>A related issue was overfitting, where the model fit the training data too perfectly, capturing irrelevant patterns or noise instead of the underlying trends. In GFT’s case, the system initially matched 50 million search terms to a small set of CDC data points. This method increased the chances of finding unrelated search terms that coincidentally aligned with flu patterns. When real-world conditions changed, such as during the non-seasonal H1N1 pandemic, the model failed because it had been tailored too closely to past flu patterns. Additionally, the algorithm’s reliance on a large number of variables, known as overparameterization, made it more prone to overfitting. Although the model discarded some irrelevant seasonal search terms, this wasn’t enough to prevent it from being overly sensitive to coincidental patterns, such as searches for unrelated topics like “high school basketball” that happened to coincide with flu season.</p>
+<p>The GFT example highlights the importance of integrating big data with traditional analytical approaches. Overreliance on data quantity, without sufficient attention to methodology, can lead to models that misinterpret trends and produce misleading results. To avoid these pitfalls, big data analytics must strike a balance between leveraging large data sets and applying rigorous, time-tested methods of analysis.</p>
 
 
 
