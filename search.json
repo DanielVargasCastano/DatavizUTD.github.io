@@ -61,5 +61,26 @@
     "title": "Tufte vs Wickham",
     "section": "",
     "text": "Edward Tufte and Hadley Wickham are two influential figures in the field of data visualization, each contributing in distinct ways to how we represent and understand data. While Tufte is known for his philosophy and principles on the aesthetics and ethics of information design, Wickham is celebrated for his practical contributions to the tools and techniques used to create visualizations, particularly within the R programming language. Their work, while complementary, reflects different approaches to data communication: one emphasizing the principles of clarity and simplicity, and the other focusing on the mechanics and flexibility of data manipulation and visualization.\nTufte has written seminal works like The Visual Display of Quantitative Information, where he outlines his core principles: clarity, precision, and efficiency. He emphasizes reducing “chartjunk,” unnecessary or distracting elements in visualizations, in favor of minimalism and clarity. Tufte’s design philosophy insists on maximizing the data-ink ratio, meaning every element on the page should convey meaningful information, leaving no room for decorative excess. His well-known examples, such as Charles Minard’s 1869 depiction of Napoleon’s Russian campaign, exemplify how complex data can be communicated with both simplicity and impact. Tufte’s work has deeply influenced the ethics of data visualization, advocating for transparency and accuracy in conveying information to avoid misleading or confusing the viewer.\nHadley Wickham, on the other hand, is known for his contributions to the technical side of data visualization and analysis. As a statistician and software developer, he created tools like ggplot2, a widely-used R package based on the Grammar of Graphics, which allows users to systematically build data visualizations. Wickham’s work enables the flexible creation of complex, layered plots, giving users granular control over every aspect of the visual representation. His focus is on the reproducibility and modularity of visualization, making it easier for analysts and researchers to create and iterate on their work programmatically. Wickham has also developed other tools in the R ecosystem (e.g., dplyr, tidyr) that facilitate data cleaning, manipulation, and preparation, all critical steps before visualization. Unlike Tufte, whose emphasis is on final presentation, Wickham provides tools that empower users throughout the entire data workflow.\nThe contrast between Tufte and Wickham is not just philosophical but also practical. Tufte focuses on the final output—the polished, minimalist product meant for conveying complex information with clarity to an audience. He is more concerned with design aesthetics and cognitive clarity. Wickham, however, is more focused on how data gets transformed and visualized through coding. His emphasis is on the flexibility and power of the process, ensuring that the visualization tools can handle a wide variety of data sets and analytical needs. While Tufte’s work could be seen as more static—refining the end product to perfection—Wickham’s is dynamic, enabling users to experiment, iterate, and scale visualizations across datasets."
+  },
+  {
+    "objectID": "assigment3.html",
+    "href": "assigment3.html",
+    "title": "Assigment3",
+    "section": "",
+    "text": "rm(list=ls()) # Clear environment oldpar &lt;- par() # save default graphical parameters if (!is.null(dev.list()[“RStudioGD”])) # Clear plot window dev.off(dev.list()[“RStudioGD”])\ncat(“\\014”) # Clear the Console gc() # Setting the parameter (3 rows by 2 cols) par(mfrow=c(3, 2))"
+  },
+  {
+    "objectID": "assigment3.html#simple-version",
+    "href": "assigment3.html#simple-version",
+    "title": "Assigment3",
+    "section": "Simple version",
+    "text": "Simple version\nplot(anscombe\\(x1,anscombe\\)y1) summary(anscombe)"
+  },
+  {
+    "objectID": "assigment3.html#download-covid-data-from-owid-github",
+    "href": "assigment3.html#download-covid-data-from-owid-github",
+    "title": "Assigment3",
+    "section": "Download COVID data from OWID GitHub",
+    "text": "Download COVID data from OWID GitHub\nowidall = read.csv(“https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true”)) # Deselect cases/rows with OWID owidall = owidall[!grepl(”^OWID”, owidall$iso_code), ] # Subset by continent: Europe owideu = subset(owidall, continent==“Europe” & as.Date(date) &lt; as.Date(“2023-08-31”) & as.Date(date) &gt; as.Date(“2020-01-01”))\nsummary(owideu) ?plot\n# ylim = c(0,7000)\npar(family = “serif”)\nplot(x = as.Date(owideu\\(date), y = owideu\\)new_deaths, pch=16, col = “#bf106d”, xaxt=“n”, ylab=““, xlab =”“) axis.Date(1,at=as.Date(owideu\\(date),labels=format(as.Date(owideu\\)date),”%Y-%m”), las = 2, cex.axis = .8) mtext(“Date”, side=1, line=4, cex=2) mtext(“COVID Deaths in Europe (Daily)”, side=2, line=2, las=0, cex=1.5)"
   }
 ]
