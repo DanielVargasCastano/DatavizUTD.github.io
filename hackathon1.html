@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davaquarto - assigment5</title>
+<title>Davaquarto - Hackathon1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -101,6 +67,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -135,11 +130,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">assigment3</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./hackathon1.html"> 
+    <a class="nav-link active" href="./hackathon1.html" aria-current="page"> 
 <span class="menu-text">assigment4</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./assigment5.html" aria-current="page"> 
+    <a class="nav-link" href="./assigment5.html"> 
 <span class="menu-text">assigment5</span></a>
   </li>  
   <li class="nav-item">
@@ -170,14 +165,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link active" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
+  <li><a href="#graph-1" id="toc-graph-1" class="nav-link" data-scroll-target="#graph-1">Graph 1</a></li>
+  <li><a href="#graph-2" id="toc-graph-2" class="nav-link" data-scroll-target="#graph-2">Graph 2</a></li>
+  <li><a href="#graph-3" id="toc-graph-3" class="nav-link" data-scroll-target="#graph-3">Graph 3</a></li>
+  <li><a href="#cleaning-data-to-include-dfw-counties" id="toc-cleaning-data-to-include-dfw-counties" class="nav-link" data-scroll-target="#cleaning-data-to-include-dfw-counties">Cleaning Data to Include DFW Counties</a></li>
+  <li><a href="#convert-the-data-from-wide-to-long-format" id="toc-convert-the-data-from-wide-to-long-format" class="nav-link" data-scroll-target="#convert-the-data-from-wide-to-long-format">Convert the data from wide to long format</a></li>
+  <li><a href="#create-the-column-chart" id="toc-create-the-column-chart" class="nav-link" data-scroll-target="#create-the-column-chart">Create the column chart</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assigment5</h1>
+<h1 class="title">Hackathon1</h1>
 </div>
 
 
@@ -194,76 +201,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())                          <span class="co"># Clear environment</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>()                        <span class="co"># save default graphical parameters</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(<span class="fu">dev.list</span>()[<span class="st">"RStudioGD"</span>])) <span class="co"># Clear plot window</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev.off</span>(<span class="fu">dev.list</span>()[<span class="st">"RStudioGD"</span>])   </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\014</span><span class="st">"</span>)                            <span class="co"># Clear the Console</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>happydat <span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"Happydat.xlsx"</span>)  </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Start plotting from basics </span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the order</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">pch=</span><span class="dv">25</span>)  <span class="co"># Can you change pch?</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">150</span>, <span class="dv">600</span>, </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Pressure (mm Hg)</span><span class="sc">\n</span><span class="st">versus</span><span class="sc">\n</span><span class="st">Temperature (Celsius)"</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>agg_df <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(happydat<span class="sc">$</span>HPI, <span class="at">by=</span><span class="fu">list</span>(happydat<span class="sc">$</span>Continent), <span class="at">FUN=</span>mean)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hist</span>(<span class="at">x=</span>happydat<span class="sc">$</span>HPI))</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Barchart</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(agg_df<span class="sc">$</span>x, <span class="at">horiz =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(agg_df<span class="sc">$</span>x, <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Box plot</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(happydat<span class="sc">$</span>HPI)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#piechart</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#par makes marks the location of the chart, xpd does not seem to change much, cex is the line width </span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#par(mar=c(0, 2, 1, 2), xpd=FALSE, cex=0.5)</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">#This is the vector for each slice of the pie</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>pie.sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">0.3</span>, <span class="fl">0.26</span>, <span class="fl">0.16</span>, <span class="fl">0.04</span>, <span class="fl">0.12</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#Names for each of the slices of the pie</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pie.sales) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Blueberry"</span>, <span class="st">"Cherry"</span>,</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Apple"</span>, <span class="st">"Boston Cream"</span>, <span class="st">"Other"</span>, <span class="st">"Vanilla"</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#makes the pie chart with the data provided and adds the color gray scale.</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(pie.sales, <span class="at">col =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="fl">0.3</span>,<span class="fl">1.0</span>,<span class="at">length=</span><span class="dv">6</span>))) </span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> happydat<span class="sc">$</span><span class="st">`</span><span class="at">GDP per capita ($)</span><span class="st">`</span>, <span class="at">y =</span> happydat<span class="sc">$</span>HPI)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#now using ggplot</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">#histogram</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> happydat, <span class="fu">aes</span>(<span class="at">x =</span>HPI ))<span class="sc">+</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#barchart</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> agg_df, <span class="fu">aes</span>( <span class="at">x =</span> Group<span class="fl">.1</span>, <span class="at">y =</span> x))<span class="sc">+</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">#now horizontal</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> agg_df, <span class="fu">aes</span>( <span class="at">x =</span> Group<span class="fl">.1</span>, <span class="at">y =</span> x))<span class="sc">+</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)<span class="sc">+</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">#Piechart</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>pieframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">sales =</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">0.3</span>, <span class="fl">0.26</span>, <span class="fl">0.16</span>, <span class="fl">0.04</span>, <span class="fl">0.12</span>),</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Blueberry"</span>, <span class="st">"Cherry"</span>,</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Apple"</span>, <span class="st">"Boston Cream"</span>, <span class="st">"Other"</span>, <span class="st">"Vanilla"</span>)</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pieframe, <span class="fu">aes</span>(<span class="at">x=</span> <span class="st">""</span>, <span class="at">y =</span> sales, <span class="at">fill =</span> name))<span class="sc">+</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>,<span class="at">start=</span><span class="dv">0</span>)</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> happydat, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">`</span><span class="at">GDP per capita ($)</span><span class="st">`</span>, <span class="at">y =</span>HPI ))<span class="sc">+</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>##Assignment4Compiled</p>
+<p>install.packages(“tidyverse”) library(tidyverse) library(dplyr) library(ggplot2)</p>
+<p>file_path &lt;- “C:\Users\dava8\OneDrive - The University of Texas at Dallas\Notes\Data viz UTD\Assigments\DV_ProjectData.csv” # or “C:\Users\ams190002\Downloads\DV_ProjectData.csv” data &lt;- read.csv(file_path) head(data) summary(data)</p>
+<section id="cleaning-data" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
+<p>state_means &lt;- data %&gt;% group_by(State) %&gt;% summarise(across(c(VoterTurnoutRate, MedianHouseholdIncome, UnemploymentRate, HSCompletion, SomeCollegeEducation,PoorOrFairHealth, AvgPoorPhysHealthDays, AvgPoorMentalHealthDays, ObesityRate, FoodEnviornmentIndex, FoodInsecurity, LimitedAccesstoHealthyFoods, PhysInactivityRate,Population), mean)) View(state_means) states_of_interest &lt;- c(“CA”, “AR”, “TX”, “OK”, “NJ”) state_means_filtered &lt;- state_means %&gt;% filter(State %in% states_of_interest)</p>
+<p>par(family=“serif”)</p>
+</section>
+<section id="graph-1" class="level2">
+<h2 class="anchored" data-anchor-id="graph-1">Graph 1</h2>
+<p>bluecolorramp &lt;- colorRampPalette(c(“skyblue”, “mediumblue”))(length(state_means_filtered<span class="math inline">\(MedianHouseholdIncome))
+colors &lt;- bluecolorramp[rank(state_means_filtered\)</span>MedianHouseholdIncome)]</p>
+<p>par(family=“serif”, cex=0.9, mar=c(3, 3.5, 3, 1)) barplot(state_means_filtered<span class="math inline">\(VoterTurnoutRate, width=state_means_filtered\)</span>MedianHouseholdIncome, space=0, col=colors, ylim=c(0,0.8), names.arg=state_means_filtered$State) title(main=“Voter Turnout vs Median Household Income”, cex.main=1.5) mtext(“Voter Turnout Rate”, , side=2, line=2.2, cex=1.1) box(bty=“l”) legend(“topright”, legend = c(“Low Income”, “High Income”), fill = c(“skyblue”, “mediumblue”), title = “Income Level”)</p>
+<p><img src="Rplot.png" class="img-fluid"></p>
+</section>
+<section id="graph-2" class="level2">
+<h2 class="anchored" data-anchor-id="graph-2">Graph 2</h2>
+<p>reduceddata &lt;- data%&gt;% filter(State == “CA”| State==“AR”|State ==“TX” | State == “OK”|State ==“NJ”)</p>
+<p>ggplot(data = reduceddata,aes(x=VoterTurnoutRate, color = State))+ geom_density()+ scale_color_brewer(palette = “Dark2”)+ theme_minimal()+ theme(legend.position = “none”, text = element_text(family = “serif”))+ facet_wrap(~State)</p>
+<p><img src="Rplot01.png" class="img-fluid"></p>
+</section>
+<section id="graph-3" class="level2">
+<h2 class="anchored" data-anchor-id="graph-3">Graph 3</h2>
+<p>ggplot(state_means_filtered, aes(x = reorder(State, VoterTurnoutRate), y = VoterTurnoutRate, fill= “forestgreen”)) + geom_col(show.legend=FALSE) + labs(title = “Voter Turnout Rate by State”, x = “State”, y = “Voter Turnout Rate”) + theme_classic() + theme(text = element_text(family = “serif”)) + coord_flip()</p>
+<p><img src="Rplot02.png" class="img-fluid"></p>
+<p>##Graph 4</p>
+</section>
+<section id="cleaning-data-to-include-dfw-counties" class="level1">
+<h1>Cleaning Data to Include DFW Counties</h1>
+<p>dfw_counties &lt;- c(“Collin County”, “Dallas County”, “Denton County”, “Ellis County”, “Hunt County”, “Kaufman County”, “Rockwall County”, “Johnson County”, “Parker County”, “Tarrant County”, “Wise County”)</p>
+<p>dfw_data &lt;- subset(data, CountyName %in% dfw_counties)</p>
+</section>
+<section id="convert-the-data-from-wide-to-long-format" class="level1">
+<h1>Convert the data from wide to long format</h1>
+<p>dfw_data_long &lt;- dfw_data %&gt;% pivot_longer(cols = c(“HSCompletion”, “SomeCollegeEducation”), names_to = “EducationLevel”, values_to = “Percentage”)</p>
+</section>
+<section id="create-the-column-chart" class="level1">
+<h1>Create the column chart</h1>
+<p>ggplot(dfw_data_long, aes(x = CountyName, y = Percentage * 100, fill = EducationLevel)) + geom_bar(stat = ‘identity’, position = ‘dodge’) + labs(title = ‘High School Completion vs Some College Education in DFW Metropolis’, x = ‘County Name’, y = ‘Percentage (%)’) + scale_fill_manual(name = ‘Education Level’, values = c(‘HSCompletion’ = ‘steelblue’, ‘SomeCollegeEducation’ = ‘forestgreen’)) + theme_minimal() + theme(text = element_text(family = “serif”), axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))</p>
+<p><img src="Rplot03.png" class="img-fluid"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
