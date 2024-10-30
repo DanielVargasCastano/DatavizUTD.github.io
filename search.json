@@ -86,35 +86,35 @@
   {
     "objectID": "hackathon1.html",
     "href": "hackathon1.html",
-    "title": "Hackathon1",
+    "title": "Assigment4",
     "section": "",
     "text": "##Assignment4Compiled\ninstall.packages(“tidyverse”) library(tidyverse) library(dplyr) library(ggplot2)\nfile_path &lt;- “C:\\Users\\dava8\\OneDrive - The University of Texas at Dallas\\Notes\\Data viz UTD\\Assigments\\DV_ProjectData.csv” # or “C:\\Users\\ams190002\\Downloads\\DV_ProjectData.csv” data &lt;- read.csv(file_path) head(data) summary(data)"
   },
   {
     "objectID": "hackathon1.html#cleaning-data",
     "href": "hackathon1.html#cleaning-data",
-    "title": "Hackathon1",
+    "title": "Assigment4",
     "section": "Cleaning Data",
     "text": "Cleaning Data\nstate_means &lt;- data %&gt;% group_by(State) %&gt;% summarise(across(c(VoterTurnoutRate, MedianHouseholdIncome, UnemploymentRate, HSCompletion, SomeCollegeEducation,PoorOrFairHealth, AvgPoorPhysHealthDays, AvgPoorMentalHealthDays, ObesityRate, FoodEnviornmentIndex, FoodInsecurity, LimitedAccesstoHealthyFoods, PhysInactivityRate,Population), mean)) View(state_means) states_of_interest &lt;- c(“CA”, “AR”, “TX”, “OK”, “NJ”) state_means_filtered &lt;- state_means %&gt;% filter(State %in% states_of_interest)\npar(family=“serif”)"
   },
   {
     "objectID": "hackathon1.html#graph-1",
     "href": "hackathon1.html#graph-1",
-    "title": "Hackathon1",
+    "title": "Assigment4",
     "section": "Graph 1",
     "text": "Graph 1\nbluecolorramp &lt;- colorRampPalette(c(“skyblue”, “mediumblue”))(length(state_means_filtered\\(MedianHouseholdIncome))\ncolors &lt;- bluecolorramp[rank(state_means_filtered\\)MedianHouseholdIncome)]\npar(family=“serif”, cex=0.9, mar=c(3, 3.5, 3, 1)) barplot(state_means_filtered\\(VoterTurnoutRate, width=state_means_filtered\\)MedianHouseholdIncome, space=0, col=colors, ylim=c(0,0.8), names.arg=state_means_filtered$State) title(main=“Voter Turnout vs Median Household Income”, cex.main=1.5) mtext(“Voter Turnout Rate”, , side=2, line=2.2, cex=1.1) box(bty=“l”) legend(“topright”, legend = c(“Low Income”, “High Income”), fill = c(“skyblue”, “mediumblue”), title = “Income Level”)"
   },
   {
     "objectID": "hackathon1.html#graph-2",
     "href": "hackathon1.html#graph-2",
-    "title": "Hackathon1",
+    "title": "Assigment4",
     "section": "Graph 2",
     "text": "Graph 2\nreduceddata &lt;- data%&gt;% filter(State == “CA”| State==“AR”|State ==“TX” | State == “OK”|State ==“NJ”)\nggplot(data = reduceddata,aes(x=VoterTurnoutRate, color = State))+ geom_density()+ scale_color_brewer(palette = “Dark2”)+ theme_minimal()+ theme(legend.position = “none”, text = element_text(family = “serif”))+ facet_wrap(~State)"
   },
   {
     "objectID": "hackathon1.html#graph-3",
     "href": "hackathon1.html#graph-3",
-    "title": "Hackathon1",
+    "title": "Assigment4",
     "section": "Graph 3",
     "text": "Graph 3\nggplot(state_means_filtered, aes(x = reorder(State, VoterTurnoutRate), y = VoterTurnoutRate, fill= “forestgreen”)) + geom_col(show.legend=FALSE) + labs(title = “Voter Turnout Rate by State”, x = “State”, y = “Voter Turnout Rate”) + theme_classic() + theme(text = element_text(family = “serif”)) + coord_flip()\n\n##Graph 4"
   },
