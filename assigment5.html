@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davaquarto - assigment1</title>
+<title>Davaquarto - assigment5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -93,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./assigment1.html" aria-current="page"> 
+    <a class="nav-link" href="./assigment1.html"> 
 <span class="menu-text">Assigment1</span></a>
   </li>  
   <li class="nav-item">
@@ -101,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">assigment3</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./assigment5.html"> 
+    <a class="nav-link active" href="./assigment5.html" aria-current="page"> 
 <span class="menu-text">assigment5</span></a>
   </li>  
   <li class="nav-item">
@@ -143,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">assigment1</h1>
+<h1 class="title">assigment5</h1>
 </div>
 
 
@@ -160,38 +194,74 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="atomic peach tree.png" class="img-fluid figure-img"></p>
-<figcaption>Atomic Orange Tree</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="housepic.png" class="img-fluid figure-img"></p>
-<figcaption>House Proceduraly Generated. Source:TheRookies.co</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="spelunkygen.png" class="img-fluid figure-img"></p>
-<figcaption>Spelunky map Generation. Source TinySubversions.com</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="minecraft-ss.png" class="img-fluid figure-img"></p>
-<figcaption>Minecraft map Generation. Source: https://ucmgamestudies2017.wordpress.com</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Satisfaction score Cars.png" class="img-fluid figure-img"></p>
-<figcaption>Chart Critique: Cars Satisfaction Score. Source: Consumer Reports</figcaption>
-</figure>
-</div>
-<p>The chart is basically a table with a colorful line for the satisfaction score. Bold letters make it clear which category is each column, and the bold number in the rank column shows the rank of each car make. All of the car brands are underlined, which does not add much to the design. The colors on the Satisfaction score clearly depict which car brand has higher consumer satisfaction with a stoplight color pallet. Then even more detail is added with the percentage of owners who would buy the same brand again. There is a problem when there are ties as it is unclear of why one brand would be preferred over the other. The rank should stay constant in those cases and skip the ranks for the next one. Otherwise, the rank column does not give much information.</p>
-<p><a href="./index.html">return</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())                          <span class="co"># Clear environment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>()                        <span class="co"># save default graphical parameters</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(<span class="fu">dev.list</span>()[<span class="st">"RStudioGD"</span>])) <span class="co"># Clear plot window</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dev.off</span>(<span class="fu">dev.list</span>()[<span class="st">"RStudioGD"</span>])   </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\014</span><span class="st">"</span>)                            <span class="co"># Clear the Console</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>happydat <span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"Happydat.xlsx"</span>)  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Start plotting from basics </span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the order</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure, <span class="at">pch=</span><span class="dv">25</span>)  <span class="co"># Can you change pch?</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">150</span>, <span class="dv">600</span>, </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>     <span class="st">"Pressure (mm Hg)</span><span class="sc">\n</span><span class="st">versus</span><span class="sc">\n</span><span class="st">Temperature (Celsius)"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Histogram</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>agg_df <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(happydat<span class="sc">$</span>HPI, <span class="at">by=</span><span class="fu">list</span>(happydat<span class="sc">$</span>Continent), <span class="at">FUN=</span>mean)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hist</span>(<span class="at">x=</span>happydat<span class="sc">$</span>HPI))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Barchart</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(agg_df<span class="sc">$</span>x, <span class="at">horiz =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(agg_df<span class="sc">$</span>x, <span class="at">horiz =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#Box plot</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(happydat<span class="sc">$</span>HPI)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#piechart</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#par makes marks the location of the chart, xpd does not seem to change much, cex is the line width </span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#par(mar=c(0, 2, 1, 2), xpd=FALSE, cex=0.5)</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">#This is the vector for each slice of the pie</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>pie.sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">0.3</span>, <span class="fl">0.26</span>, <span class="fl">0.16</span>, <span class="fl">0.04</span>, <span class="fl">0.12</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#Names for each of the slices of the pie</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pie.sales) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Blueberry"</span>, <span class="st">"Cherry"</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Apple"</span>, <span class="st">"Boston Cream"</span>, <span class="st">"Other"</span>, <span class="st">"Vanilla"</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#makes the pie chart with the data provided and adds the color gray scale.</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(pie.sales, <span class="at">col =</span> <span class="fu">gray</span>(<span class="fu">seq</span>(<span class="fl">0.3</span>,<span class="fl">1.0</span>,<span class="at">length=</span><span class="dv">6</span>))) </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> happydat<span class="sc">$</span><span class="st">`</span><span class="at">GDP per capita ($)</span><span class="st">`</span>, <span class="at">y =</span> happydat<span class="sc">$</span>HPI)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#now using ggplot</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">#histogram</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> happydat, <span class="fu">aes</span>(<span class="at">x =</span>HPI ))<span class="sc">+</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#barchart</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> agg_df, <span class="fu">aes</span>( <span class="at">x =</span> Group<span class="fl">.1</span>, <span class="at">y =</span> x))<span class="sc">+</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">#now horizontal</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> agg_df, <span class="fu">aes</span>( <span class="at">x =</span> Group<span class="fl">.1</span>, <span class="at">y =</span> x))<span class="sc">+</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)<span class="sc">+</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">#Piechart</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>pieframe <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">sales =</span> <span class="fu">c</span>(<span class="fl">0.12</span>, <span class="fl">0.3</span>, <span class="fl">0.26</span>, <span class="fl">0.16</span>, <span class="fl">0.04</span>, <span class="fl">0.12</span>),</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Blueberry"</span>, <span class="st">"Cherry"</span>,</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Apple"</span>, <span class="st">"Boston Cream"</span>, <span class="st">"Other"</span>, <span class="st">"Vanilla"</span>)</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pieframe, <span class="fu">aes</span>(<span class="at">x=</span> <span class="st">""</span>, <span class="at">y =</span> sales, <span class="at">fill =</span> name))<span class="sc">+</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>,<span class="at">start=</span><span class="dv">0</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> happydat, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">`</span><span class="at">GDP per capita ($)</span><span class="st">`</span>, <span class="at">y =</span>HPI ))<span class="sc">+</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
