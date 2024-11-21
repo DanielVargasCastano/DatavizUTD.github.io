@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davaquarto - Tufte vs Wickham</title>
+<title>Tufte vs Wickham – Davaquarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -113,6 +113,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">assigment6</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./assigment7.html"> 
+<span class="menu-text">assigment7</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./note1.html"> 
 <span class="menu-text">Tufte Future of Data Analysis</span></a>
   </li>  
@@ -126,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -135,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
@@ -163,7 +167,9 @@ ul.task-list li input[type="checkbox"] {
 <p>Edward Tufte and Hadley Wickham are two influential figures in the field of data visualization, each contributing in distinct ways to how we represent and understand data. While Tufte is known for his philosophy and principles on the aesthetics and ethics of information design, Wickham is celebrated for his practical contributions to the tools and techniques used to create visualizations, particularly within the R programming language. Their work, while complementary, reflects different approaches to data communication: one emphasizing the principles of clarity and simplicity, and the other focusing on the mechanics and flexibility of data manipulation and visualization.</p>
 <p>Tufte has written seminal works like <em>The Visual Display of Quantitative Information</em>, where he outlines his core principles: clarity, precision, and efficiency. He emphasizes reducing “chartjunk,” unnecessary or distracting elements in visualizations, in favor of minimalism and clarity. Tufte’s design philosophy insists on maximizing the data-ink ratio, meaning every element on the page should convey meaningful information, leaving no room for decorative excess. His well-known examples, such as Charles Minard’s 1869 depiction of Napoleon’s Russian campaign, exemplify how complex data can be communicated with both simplicity and impact. Tufte’s work has deeply influenced the ethics of data visualization, advocating for transparency and accuracy in conveying information to avoid misleading or confusing the viewer.</p>
 <p>Hadley Wickham, on the other hand, is known for his contributions to the technical side of data visualization and analysis. As a statistician and software developer, he created tools like ggplot2, a widely-used R package based on the Grammar of Graphics, which allows users to systematically build data visualizations. Wickham’s work enables the flexible creation of complex, layered plots, giving users granular control over every aspect of the visual representation. His focus is on the reproducibility and modularity of visualization, making it easier for analysts and researchers to create and iterate on their work programmatically. Wickham has also developed other tools in the R ecosystem (e.g., dplyr, tidyr) that facilitate data cleaning, manipulation, and preparation, all critical steps before visualization. Unlike Tufte, whose emphasis is on final presentation, Wickham provides tools that empower users throughout the entire data workflow.</p>
-<p>The contrast between Tufte and Wickham is not just philosophical but also practical. Tufte focuses on the final output—the polished, minimalist product meant for conveying complex information with clarity to an audience. He is more concerned with design aesthetics and cognitive clarity. Wickham, however, is more focused on how data gets transformed and visualized through coding. His emphasis is on the flexibility and power of the process, ensuring that the visualization tools can handle a wide variety of data sets and analytical needs. While Tufte’s work could be seen as more static—refining the end product to perfection—Wickham’s is dynamic, enabling users to experiment, iterate, and scale visualizations across datasets.</p>
+<p>The contrast between Tufte and Wickham is not just philosophical but also practical. Tufte focuses on the final output, the polished, minimalist product meant for conveying complex information with clarity to an audience. He is more concerned with design aesthetics and cognitive clarity. Wickham, however, is more focused on how data gets transformed and visualized through coding. His emphasis is on the flexibility and power of the process, ensuring that the visualization tools can handle a wide variety of data sets and analytical needs. While Tufte’s work could be seen as more static, refining the end product to perfection, Wickham’s is dynamic, enabling users to experiment, iterate, and scale visualizations across datasets.<br>
+<br>
+used chatGPT as an aid for writing and edited for correctness and accuracy.</p>
 
 
 
@@ -203,18 +209,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -246,7 +241,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -254,7 +271,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

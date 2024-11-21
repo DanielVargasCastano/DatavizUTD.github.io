@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davaquarto - Tufte: Future of Data Analsis</title>
+<title>Tufte: Future of Data Analsis – Davaquarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -113,6 +113,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">assigment6</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./assigment7.html"> 
+<span class="menu-text">assigment7</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./note1.html" aria-current="page"> 
 <span class="menu-text">Tufte Future of Data Analysis</span></a>
   </li>  
@@ -126,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -135,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
@@ -163,7 +167,9 @@ ul.task-list li input[type="checkbox"] {
 <p>Dr.&nbsp;Edward Tufte’s keynote at the 2016 Microsoft Machine Learning &amp; Data Science Summit highlighted the critical role of data visualization in transforming raw data into meaningful narratives. He emphasized that effective visualizations lead to “visible certainty,” where data is clearly communicated, enabling informed decision-making. Tufte argued that data scientists must go beyond making data visually appealing and focus on supporting reasoning and understanding through their designs. He used historical examples like Galileo’s use of the telescope to illustrate how visual aids have long been essential in advancing understanding. For modern data scientists, Tufte stressed the importance of creating visualizations that simplify and clarify complex data. He warned against the dangers of confirmation bias and distorting data to fit preconceived notions, emphasizing the need for accuracy and integrity in data analysis. Tufte advocated for visual designs that highlight causal relationships, facilitate smart comparisons, and avoid unnecessary clutter. He emphasized that the true purpose of data visualization is to aid in thinking and reasoning, not just to present information.</p>
 <p>Looking to the future, Tufte noted the potential of new technologies like high-resolution screens and 3D visualizations to enhance data presentations. He praised the clarity of Swiss maps and the storytelling techniques of Pixar as models for content-driven design.</p>
 <p>He also discussed the current crisis in data analysis, where many studies suffer from overfitting and flawed methodologies, citing the failure of the Google Flu model as an example. Tufte urged data scientists to adopt rigorous, transparent practices, such as pre-specified research designs and independent replication, to ensure accuracy.</p>
-<p>In closing, Tufte called for a higher standard of analytical rigor and integrity in data science, challenging practitioners to prioritize truth and clarity in their work.</p>
+<p>In closing, Tufte called for a higher standard of analytical rigor and integrity in data science, challenging practitioners to prioritize truth and clarity in their work.<br>
+<br>
+Used ChatGPT as aid for writing and grammar</p>
 
 
 
@@ -203,18 +209,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -246,7 +241,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -254,7 +271,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
