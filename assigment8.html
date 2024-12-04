@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Davaquarto - Assigment4</title>
+<title>Davaquarto - assignment8</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -130,7 +101,7 @@ window.Quarto = {
 <span class="menu-text">assigment3</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./hackathon1.html" aria-current="page"> 
+    <a class="nav-link" href="./hackathon1.html"> 
 <span class="menu-text">assigment4</span></a>
   </li>  
   <li class="nav-item">
@@ -173,26 +144,14 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#cleaning-data" id="toc-cleaning-data" class="nav-link active" data-scroll-target="#cleaning-data">Cleaning Data</a></li>
-  <li><a href="#graph-1" id="toc-graph-1" class="nav-link" data-scroll-target="#graph-1">Graph 1</a></li>
-  <li><a href="#graph-2" id="toc-graph-2" class="nav-link" data-scroll-target="#graph-2">Graph 2</a></li>
-  <li><a href="#graph-3" id="toc-graph-3" class="nav-link" data-scroll-target="#graph-3">Graph 3</a></li>
-  <li><a href="#cleaning-data-to-include-dfw-counties" id="toc-cleaning-data-to-include-dfw-counties" class="nav-link" data-scroll-target="#cleaning-data-to-include-dfw-counties">Cleaning Data to Include DFW Counties</a></li>
-  <li><a href="#convert-the-data-from-wide-to-long-format" id="toc-convert-the-data-from-wide-to-long-format" class="nav-link" data-scroll-target="#convert-the-data-from-wide-to-long-format">Convert the data from wide to long format</a></li>
-  <li><a href="#create-the-column-chart" id="toc-create-the-column-chart" class="nav-link" data-scroll-target="#create-the-column-chart">Create the column chart</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assigment4</h1>
+<h1 class="title">assignment8</h1>
 </div>
 
 
@@ -209,49 +168,10 @@ window.Quarto = {
 </header>
 
 
-<p>##Assignment4Compiled</p>
-<p>install.packages(“tidyverse”) library(tidyverse) library(dplyr) library(ggplot2)</p>
-<p>file_path &lt;- “C:\Users\dava8\OneDrive - The University of Texas at Dallas\Notes\Data viz UTD\Assigments\DV_ProjectData.csv” # or “C:\Users\ams190002\Downloads\DV_ProjectData.csv” data &lt;- read.csv(file_path) head(data) summary(data)</p>
-<section id="cleaning-data" class="level2">
-<h2 class="anchored" data-anchor-id="cleaning-data">Cleaning Data</h2>
-<p>state_means &lt;- data %&gt;% group_by(State) %&gt;% summarise(across(c(VoterTurnoutRate, MedianHouseholdIncome, UnemploymentRate, HSCompletion, SomeCollegeEducation,PoorOrFairHealth, AvgPoorPhysHealthDays, AvgPoorMentalHealthDays, ObesityRate, FoodEnviornmentIndex, FoodInsecurity, LimitedAccesstoHealthyFoods, PhysInactivityRate,Population), mean)) View(state_means) states_of_interest &lt;- c(“CA”, “AR”, “TX”, “OK”, “NJ”) state_means_filtered &lt;- state_means %&gt;% filter(State %in% states_of_interest)</p>
-<p>par(family=“serif”)</p>
-</section>
-<section id="graph-1" class="level2">
-<h2 class="anchored" data-anchor-id="graph-1">Graph 1</h2>
-<p>bluecolorramp &lt;- colorRampPalette(c(“skyblue”, “mediumblue”))(length(state_means_filtered<span class="math inline">\(MedianHouseholdIncome))
-colors &lt;- bluecolorramp[rank(state_means_filtered\)</span>MedianHouseholdIncome)]</p>
-<p>par(family=“serif”, cex=0.9, mar=c(3, 3.5, 3, 1)) barplot(state_means_filtered<span class="math inline">\(VoterTurnoutRate, width=state_means_filtered\)</span>MedianHouseholdIncome, space=0, col=colors, ylim=c(0,0.8), names.arg=state_means_filtered$State) title(main=“Voter Turnout vs Median Household Income”, cex.main=1.5) mtext(“Voter Turnout Rate”, , side=2, line=2.2, cex=1.1) box(bty=“l”) legend(“topright”, legend = c(“Low Income”, “High Income”), fill = c(“skyblue”, “mediumblue”), title = “Income Level”)</p>
-<p><img src="Rplot.png" class="img-fluid"></p>
-</section>
-<section id="graph-2" class="level2">
-<h2 class="anchored" data-anchor-id="graph-2">Graph 2</h2>
-<p>reduceddata &lt;- data%&gt;% filter(State == “CA”| State==“AR”|State ==“TX” | State == “OK”|State ==“NJ”)</p>
-<p>ggplot(data = reduceddata,aes(x=VoterTurnoutRate, color = State))+ geom_density()+ scale_color_brewer(palette = “Dark2”)+ theme_minimal()+ theme(legend.position = “none”, text = element_text(family = “serif”))+ facet_wrap(~State)</p>
-<p><img src="Rplot01.png" class="img-fluid"></p>
-</section>
-<section id="graph-3" class="level2">
-<h2 class="anchored" data-anchor-id="graph-3">Graph 3</h2>
-<p>ggplot(state_means_filtered, aes(x = reorder(State, VoterTurnoutRate), y = VoterTurnoutRate, fill= “forestgreen”)) + geom_col(show.legend=FALSE) + labs(title = “Voter Turnout Rate by State”, x = “State”, y = “Voter Turnout Rate”) + theme_classic() + theme(text = element_text(family = “serif”)) + coord_flip()</p>
-<p><img src="Rplot02.png" class="img-fluid"></p>
-<p>##Graph 4</p>
-</section>
-<section id="cleaning-data-to-include-dfw-counties" class="level1">
-<h1>Cleaning Data to Include DFW Counties</h1>
-<p>dfw_counties &lt;- c(“Collin County”, “Dallas County”, “Denton County”, “Ellis County”, “Hunt County”, “Kaufman County”, “Rockwall County”, “Johnson County”, “Parker County”, “Tarrant County”, “Wise County”)</p>
-<p>dfw_data &lt;- subset(data, CountyName %in% dfw_counties)</p>
-</section>
-<section id="convert-the-data-from-wide-to-long-format" class="level1">
-<h1>Convert the data from wide to long format</h1>
-<p>dfw_data_long &lt;- dfw_data %&gt;% pivot_longer(cols = c(“HSCompletion”, “SomeCollegeEducation”), names_to = “EducationLevel”, values_to = “Percentage”)</p>
-</section>
-<section id="create-the-column-chart" class="level1">
-<h1>Create the column chart</h1>
-<p>ggplot(dfw_data_long, aes(x = CountyName, y = Percentage * 100, fill = EducationLevel)) + geom_bar(stat = ‘identity’, position = ‘dodge’) + labs(title = ‘High School Completion vs Some College Education in DFW Metropolis’, x = ‘County Name’, y = ‘Percentage (%)’) + scale_fill_manual(name = ‘Education Level’, values = c(‘HSCompletion’ = ‘steelblue’, ‘SomeCollegeEducation’ = ‘forestgreen’)) + theme_minimal() + theme(text = element_text(family = “serif”), axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1))</p>
-<p><img src="Rplot03.png" class="img-fluid"></p>
+<iframe width="800" height="600" src="https://chantanmorinjr.shinyapps.io/FinalProjectDashboard/" frameborder="0" allowfullscreen="">
+</iframe>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
